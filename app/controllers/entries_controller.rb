@@ -8,7 +8,25 @@ class EntriesController < ApplicationController
     @entry = Entry.new
   end
 
+  def create
+    @entry = Entry.new
+      @entry.word = params[:entry][:word]
+      @entry.definition = params[:entry][:definition]
+      @entry.language = params[:entry][:language]
+    if @entry.save
+        redirect_to entries_path
+      else
+        render :new
+      end
+  end
+
   def show
     @entry = Entry.find(params[:id])
   end
+
+# !---this is how we can filter out unwanted info from browser--!
+  def entry_params
+    params.require(:entry).permit(:word, :definition, :language)
+  end
+
 end
