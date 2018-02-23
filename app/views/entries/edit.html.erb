@@ -1,1 +1,12 @@
-<h1>placeholder for edit and update page</h1>
+<h1>Edit an Entry</h1>
+
+<%= form_for @entry do |f| %>
+<%= f.label :word %> <%= f.text_field :word %><br>
+
+<%= f.label :definition %> <%= f.text_field :definition %><br>
+
+<%= f.label :language %> <%= f.text_field :language %><br>
+
+<%= f.submit %>
+
+<% end %>

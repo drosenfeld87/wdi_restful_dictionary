@@ -24,6 +24,23 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
   end
 
+  def edit
+    @entry = Entry.find(params[:id])
+  end
+
+  def update
+    @entry = Entry.new
+      @entry.word = params[:entry][:word]
+      @entry.definition = params[:entry][:definition]
+      @entry.language = params[:entry][:language]
+        if @entry.save
+            redirect_to entry_path(@entry)
+          else
+            render :show
+          end
+  end
+
+
 # !---this is how we can filter out unwanted info from browser--!
   def entry_params
     params.require(:entry).permit(:word, :definition, :language)
