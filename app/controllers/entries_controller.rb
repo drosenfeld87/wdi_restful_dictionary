@@ -40,6 +40,14 @@ class EntriesController < ApplicationController
           end
   end
 
+  def destroy
+    @entry = Entry.find(params[:id])
+      if @entry.destroy
+        redirect_to entries_path
+      else
+        render :show
+      end
+  end
 
 # !---this is how we can filter out unwanted info from browser--!
   def entry_params
